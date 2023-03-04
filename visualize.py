@@ -8,12 +8,12 @@ from tqdm import tqdm
 
 from setup import config
 
-def draw(actual_values, pred_values, title, file_name, xlabel, ylabel, legend):
+def draw(actual_values, pred_values, title, file_name, xlabel, ylabel, legend, show_only=False):
     X_time = [i for i in range(len(actual_values))]
     
     plt.figure(figsize=(16,9), facecolor='w', edgecolor='k')
-    plt.plot(X_time, actual_values, color="red", linewidth=5, label = actual_values)
-    plt.plot(X_time, pred_values, color="blue", linewidth=3, label = pred_values)
+    plt.plot(X_time, actual_values, color="red", linewidth=5, label=actual_values)
+    plt.plot(X_time, pred_values, color="blue", linewidth=3, label=pred_values)
     
     plt.xlabel(xlabel, fontsize=10)
     plt.ylabel(ylabel, fontsize=10)
@@ -22,8 +22,11 @@ def draw(actual_values, pred_values, title, file_name, xlabel, ylabel, legend):
     plt.legend(legend, loc ="lower right")
     plt.title(title)
     
-    path = os.path.join(config.RST_GRAPH, file_name)
-    plt.savefig(path)
+    if show_only:
+        plt.show()
+    else:
+        path = os.path.join(config.RST_GRAPH, file_name)
+        plt.savefig(path)
 
 t1 = glob.glob(os.path.join(config.PRED_DIR, "*.csv"))
 for file in tqdm(t1, desc="Plotting the waveforms!"):
