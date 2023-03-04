@@ -5,6 +5,9 @@ TECHNIQUE = 'dwt'
 VARIANT = 'sine 250 mv'
 KIND = 'all-cols'
 
+TRAIN_SET_PATH = "D:\\Final Year Project\\Play with DWT\\Sine\\dataset\\{}\\train".format(VARIANT)
+TEST_SET_PATH = "D:\\Final Year Project\\Play with DWT\\Sine\\dataset\\{}\\test".format(VARIANT)
+
 PRED_DIR = os.path.join('predictions', VARIANT)
 
 METRICS_DIR = 'metrics'

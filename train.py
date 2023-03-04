@@ -1,19 +1,5 @@
-import os
-import math
-import sys
-import glob
-import pickle
-import pywt
+from setup import config, folders
+from utils import dwt
 
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-
-from sklearn_pandas import DataFrameMapper
-from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-
-from utils import setup
-
-setup.create_folders()
+folders.create_folders()
+dwt.load_dwt(config.TEST_SET_PATH, config.VINN_FILES_TEST)

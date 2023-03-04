@@ -1,5 +1,5 @@
 import os
-from utils import config
+from setup import config
 
 def create_folders():
     if not os.path.exists(config.PRED_DIR):
