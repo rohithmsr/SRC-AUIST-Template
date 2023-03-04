@@ -20,6 +20,10 @@ METRICS_GRAPH = os.path.join('graphs', 'metrics', VARIANT)
 VINN_FILES_TRAIN = os.path.join('transformed_dataset', 'train', VARIANT)
 VINN_FILES_TEST = os.path.join('transformed_dataset', 'test', VARIANT)
 
-MODEL_PATH = os.path.join('assets', 'model.pkl')
-SCALER_PATH = os.path.join('assets', 'scaler.pkl')
-ENCODER_PATH = os.path.join('assets', 'encoder.pkl')
+MODEL_NAME = "model_{}_{}_{}_{}.pkl".format(ALGORITHM, TECHNIQUE, VARIANT, KIND)
+SCALER_NAME = "scaler_{}_{}_{}_{}.pkl".format(ALGORITHM, TECHNIQUE, VARIANT, KIND)
+ENCODER_NAME = "encoder_{}_{}_{}_{}.pkl".format(ALGORITHM, TECHNIQUE, VARIANT, KIND)
+
+MODEL_PATH = os.path.join('assets', MODEL_NAME)
+SCALER_PATH = os.path.join('assets', SCALER_NAME)
+ENCODER_PATH = os.path.join('assets', ENCODER_NAME)
