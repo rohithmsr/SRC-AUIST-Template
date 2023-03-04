@@ -28,15 +28,16 @@ def draw(actual_values, pred_values, title, file_name, xlabel, ylabel, legend, s
         path = os.path.join(config.RST_GRAPH, file_name)
         plt.savefig(path)
 
-t1 = glob.glob(os.path.join(config.PRED_DIR, "*.csv"))
-for file in tqdm(t1, desc="Plotting the waveforms!"):
-    title = os.path.basename(file).replace('.csv', '')
-    file_name = '{}-{}_{}_{}_{}.jpg'.format(title, config.ALGORITHM, config.TECHNIQUE, config.VARIANT, config.KIND)
+if __name__ == "__main__":
+    t1 = glob.glob(os.path.join(config.PRED_DIR, "*.csv"))
+    for file in tqdm(t1, desc="Plotting the waveforms!"):
+        title = os.path.basename(file).replace('.csv', '')
+        file_name = '{}-{}_{}_{}_{}.jpg'.format(title, config.ALGORITHM, config.TECHNIQUE, config.VARIANT, config.KIND)
 
-    df = pd.read_csv(file)
+        df = pd.read_csv(file)
 
-    xlabel = "Time (ns) "
-    ylabel = "vinn"
-    legend = ["Actual vinn", "Predicted vinn"]
+        xlabel = "Time (ns) "
+        ylabel = "vinn"
+        legend = ["Actual vinn", "Predicted vinn"]
 
-    draw(df["vinn"], df["pred_vinn"], title, file_name, xlabel, ylabel, legend)
+        draw(df["vinn"], df["pred_vinn"], title, file_name, xlabel, ylabel, legend)

@@ -55,7 +55,8 @@ def predict(test_row, file_location):
     
     return df_result
 
-t1 = glob.glob(os.path.join(config.VINN_FILES_TEST, "*.csv"))
-for file in tqdm(t1, desc=f"Generating predictions for {len(t1)} test files"):
-    test_df = pd.read_csv(file)
-    pred_df = predict(test_df, file)
+if __name__ == '__main__':
+    t1 = glob.glob(os.path.join(config.VINN_FILES_TEST, "*.csv"))
+    for file in tqdm(t1, desc=f"Generating predictions for {len(t1)} test files"):
+        test_df = pd.read_csv(file)
+        pred_df = predict(test_df, file)

@@ -40,17 +40,18 @@ def compute_metrics(values, pred_values, file_name):
     }
 
     return metrics_format
-    
-metrics = []
 
-t1 = glob.glob(os.path.join(config.PRED_DIR, "*.csv"))
-for file in tqdm(t1, desc=f"Finding metrics for the {len(t1)} test files"):
-    file_name = os.path.basename(file)
-    df = pd.read_csv(file)
+if __name__ == '__main__':
+    metrics = []
 
-    result = compute_metrics(df['vinn'], df['pred_vinn'], file_name)
-    metrics.append(result)
+    t1 = glob.glob(os.path.join(config.PRED_DIR, "*.csv"))
+    for file in tqdm(t1, desc=f"Finding metrics for the {len(t1)} test files"):
+        file_name = os.path.basename(file)
+        df = pd.read_csv(file)
 
-metrics_df = pd.DataFrame.from_dict(metrics)
-metrics_df.to_csv(os.path.join(config.METRICS_DIR, config.METRIC_FILE), index = False)
-print(metrics_df)
+        result = compute_metrics(df['vinn'], df['pred_vinn'], file_name)
+        metrics.append(result)
+
+    metrics_df = pd.DataFrame.from_dict(metrics)
+    metrics_df.to_csv(os.path.join(config.METRICS_DIR, config.METRIC_FILE), index = False)
+    print(metrics_df)

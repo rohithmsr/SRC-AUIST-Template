@@ -2,7 +2,7 @@ import os
 
 ALGORITHM = 'rf'
 TECHNIQUE = 'dwt'
-VARIANT = 'sine 250 mv'
+VARIANT = 'sine 750 mv'
 KIND = 'all-cols'
 
 TRAIN_SET_PATH = "D:\\Final Year Project\\Play with DWT\\Sine\\dataset\\{}\\train".format(VARIANT)
