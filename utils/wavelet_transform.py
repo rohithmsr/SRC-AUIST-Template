@@ -68,3 +68,6 @@ def load_dwt(file_path, export, dwt_columns=['vdd', 'xpd', 'pd', 'vinp', 'vinn']
     end = time.time()
     print(f"DWT computed in {end - start} seconds")
     return
+
+def idwt(coeffs, wavelet='db4', mode='per'):
+    return pywt.waverec(coeffs, wavelet, mode=mode)
