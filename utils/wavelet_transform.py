@@ -1,6 +1,7 @@
 import pywt
 import glob
 import time
+
 import pandas as pd
 from tqdm import tqdm
 
@@ -21,7 +22,18 @@ def compute_dwt(df, wavelet='db4', mode='per', level=None, columns=[]):
     
     return list_of_dwt
 
-def load_dwt(file_path, export):
+def convert_to_coeff_arrays(coeffs, sz, wavelet='db4', mode='per', level=None):
+    if level is None:
+        level = pywt.dwt_max_level(sz, wavelet)
+
+    dummy_vinn = [i for i in range(0, sz)]
+    coeffs_dummy_vinn = pywt.wavedec(dummy_vinn, wavelet, level=level, mode=mode)
+    dwt_coeff_slices = pywt.coeffs_to_array(coeffs_dummy_vinn)[1]
+    
+    res = pywt.array_to_coeffs(coeffs, dwt_coeff_slices, output_format='wavedec')
+    return res
+
+def load_dwt(file_path, export, dwt_columns=['vdd', 'xpd', 'pd', 'vinp', 'vinn'], usecols=['process', 'temperature']):
     start = time.time()
 
     new_df = pd.DataFrame()
@@ -32,15 +44,20 @@ def load_dwt(file_path, export):
         
         filename = file.replace(file_path, "")
 
-        df = pd.read_csv(file, usecols = ['process', 'temperature', 'vinn', 'vdd', 'xpd', 'pd', 'vinp'])
-        dwt_vinn, dwt_vdd, dwt_xpd, dwt_pd, dwt_vinp = compute_dwt(df, columns = ['vinn', 'vdd', 'xpd', 'pd', 'vinp'])
+        df = pd.read_csv(file, usecols=usecols)
+
+        # dwt_vinn, dwt_vdd, dwt_xpd, dwt_pd, dwt_vinp = compute_dwt(df, columns=dwt_columns)
+        # Don't change the order!
+        # new_df['vdd'] = dwt_vdd
+        # new_df['xpd'] = dwt_xpd
+        # new_df['pd'] = dwt_pd
+        # new_df['vinp'] = dwt_vinp
+        # new_df['vinn'] = dwt_vinn
         
         # Don't change the order!
-        new_df['vdd'] = dwt_vdd
-        new_df['xpd'] = dwt_xpd
-        new_df['pd'] = dwt_pd
-        new_df['vinp'] = dwt_vinp
-        new_df['vinn'] = dwt_vinn
+        dwt_values = compute_dwt(df, columns=dwt_columns)
+        for index, column in enumerate(dwt_columns):
+            new_df[column] = dwt_values[index]
         
         new_df['process'] = df['process'][0]
         new_df['temperature'] = df['temperature'][0]
