@@ -8,6 +8,9 @@ def create_folders():
     if not os.path.exists(config.METRICS_DIR):
         os.makedirs(config.METRICS_DIR)
 
+    if not os.path.exists(config.ASSETS_DIR):
+        os.makedirs(config.ASSETS_DIR)
+
     if not os.path.exists(config.METRICS_GRAPH):
         os.makedirs(config.METRICS_GRAPH)
 

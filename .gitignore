@@ -2,5 +2,6 @@ graphs/
 metrics/
 predictions/
 transformed_dataset/
+assets/
 
 **/__pycache__/

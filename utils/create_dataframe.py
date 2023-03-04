@@ -9,4 +9,5 @@ def create_combined_dataframe(files_path):
     df = pd.concat(df_list, ignore_index=True)
     df.rename(columns = {'Unnamed: 0':'itime'}, inplace = True)
 
+    print("Dataframe created and returned successfully!")
     return df

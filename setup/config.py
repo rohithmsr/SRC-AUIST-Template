@@ -10,6 +10,7 @@ TEST_SET_PATH = "D:\\Final Year Project\\Play with DWT\\Sine\\dataset\\{}\\test"
 
 PRED_DIR = os.path.join('predictions', VARIANT)
 
+ASSETS_DIR = 'assets'
 METRICS_DIR = 'metrics'
 METRIC_FILE ='{}_{}_{}-{}.csv'.format(ALGORITHM, TECHNIQUE, VARIANT, KIND)
 
@@ -19,3 +20,6 @@ METRICS_GRAPH = os.path.join('graphs', 'metrics', VARIANT)
 VINN_FILES_TRAIN = os.path.join('transformed_dataset', 'train', VARIANT)
 VINN_FILES_TEST = os.path.join('transformed_dataset', 'test', VARIANT)
 
+MODEL_PATH = os.path.join('assets', 'model.pkl')
+SCALER_PATH = os.path.join('assets', 'scaler.pkl')
+ENCODER_PATH = os.path.join('assets', 'encoder.pkl')
