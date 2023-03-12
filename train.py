@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.ensemble import RandomForestRegressor
@@ -7,7 +8,8 @@ from setup import config
 from utils import prepare_data
 
 if __name__ == '__main__':
-    df = prepare_data.create_combined_dataframe(config.VINN_FILES_TRAIN)
+    df = prepare_data.create_combined_dataframe(os.path.join(config.SPLIT_VINN_FILES_TRAIN, config.REGION))
+    # config.VINN_FILES_TRAIN
         
     features = ['vdd', 'xpd', 'pd', 'vinp','itime', 'process', 'temperature', 'volts']
     target = ['vinn']

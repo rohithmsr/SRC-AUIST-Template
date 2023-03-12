@@ -63,7 +63,7 @@ def load_dwt(file_path, export, dwt_columns=['vdd', 'xpd', 'pd', 'vinp', 'vinn']
         new_df['temperature'] = df['temperature'][0]
         new_df['volts'] = volts
         
-        new_df.to_csv(export + '\\' + filename)
+        new_df.to_csv(export + filename)
 
     end = time.time()
     print(f"DWT computed in {end - start} seconds")

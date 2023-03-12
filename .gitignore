@@ -3,5 +3,6 @@ metrics/
 predictions/
 transformed_dataset/
 assets/
+split/
 
 **/__pycache__/

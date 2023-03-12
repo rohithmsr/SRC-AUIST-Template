@@ -26,7 +26,8 @@ def predict(test_row, file_location):
     X_test.columns = ['vdd', 'xpd', 'pd', 'vinp', 'itime', 'temperature', 'volts', 'process_0', 'process_1', 'process_2', 'process_3', 'process_4']
     
     # Get the actual vinn values of the file
-    test_file_path = config.TEST_SET_PATH
+    # test_file_path = config.TEST_SET_PATH
+    test_file_path = os.path.join(config.SPLIT_TEST_SET_PATH, config.REGION)
     file_name = os.path.basename(file_location)
     file_path = os.path.join(test_file_path, file_name)
     
@@ -41,6 +42,7 @@ def predict(test_row, file_location):
     coeffs = wavelet_transform.convert_to_coeff_arrays(y_pred, len(vinn))
 
     pred_vinn = wavelet_transform.idwt(coeffs, wavelet='db4', mode='per')
+    pred_vinn = pred_vinn[:len(vinn)]
     pred_vinn = pd.Series(pred_vinn)
     
     # Store results in df
@@ -56,7 +58,7 @@ def predict(test_row, file_location):
     return df_result
 
 if __name__ == '__main__':
-    t1 = glob.glob(os.path.join(config.VINN_FILES_TEST, "*.csv"))
+    t1 = glob.glob(os.path.join(config.SPLIT_VINN_FILES_TEST, config.REGION, "*.csv"))
     for file in tqdm(t1, desc=f"Generating predictions for {len(t1)} test files"):
         test_df = pd.read_csv(file)
         pred_df = predict(test_df, file)

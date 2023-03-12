@@ -24,3 +24,35 @@ def create_folders():
 
     if not os.path.exists(config.VINN_FILES_TEST):
         os.makedirs(config.VINN_FILES_TEST)
+
+    if not os.path.exists(config.SPLIT_VINN_FILES_TRAIN):
+        os.makedirs(config.SPLIT_VINN_FILES_TRAIN)
+
+    for region in config.REGIONS:
+        path = os.path.join(config.SPLIT_VINN_FILES_TRAIN, region)
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+    if not os.path.exists(config.SPLIT_VINN_FILES_TEST):
+        os.makedirs(config.SPLIT_VINN_FILES_TEST)
+
+    for region in config.REGIONS:
+        path = os.path.join(config.SPLIT_VINN_FILES_TEST, region)
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+    if not os.path.exists(config.SPLIT_FILES_TRAIN_DIR):
+        os.makedirs(config.SPLIT_FILES_TRAIN_DIR)
+
+    for region in config.REGIONS:
+        path = os.path.join(config.SPLIT_FILES_TRAIN_DIR, region)
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+    if not os.path.exists(config.SPLIT_FILES_TEST_DIR):
+        os.makedirs(config.SPLIT_FILES_TEST_DIR)
+        
+    for region in config.REGIONS:
+        path = os.path.join(config.SPLIT_FILES_TEST_DIR, region)
+        if not os.path.exists(path):
+            os.makedirs(path)
