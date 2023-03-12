@@ -2,6 +2,8 @@ import os
 from setup import config
 
 def create_folders():
+    '''Creates new folders required'''
+    
     if not os.path.exists(config.PRED_DIR):
         os.makedirs(config.PRED_DIR)
 
