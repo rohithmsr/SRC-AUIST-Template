@@ -19,7 +19,12 @@ $ python main.py
 Call your helper functions here, if needed. For example:
 The function that is used to verify whether the idwt of the waveform is equivalent to the actual time domain values of the waveform
 ```
-verify_transform.plot_verify('vdd', 'fastnfastp_3.3V_45.csv')
+    verify_transform.plot_verify(
+        'vinn', 
+        'typical_3.3V_-15.csv', 
+        os.path.join(config.SPLIT_TRAIN_SET_PATH, region), 
+        os.path.join(config.SPLIT_VINN_FILES_TRAIN, region)
+    )
 ```
 
 ## Training
