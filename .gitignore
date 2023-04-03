@@ -3,5 +3,8 @@ metrics/
 predictions/
 transformed_dataset/
 assets/
+split/
+idwt_dir/
+*.zip
 
 **/__pycache__/

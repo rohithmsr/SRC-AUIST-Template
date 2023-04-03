@@ -27,3 +27,6 @@ ENCODER_NAME = "encoder_{}_{}_{}_{}.pkl".format(ALGORITHM, TECHNIQUE, VARIANT, K
 MODEL_PATH = os.path.join('assets', MODEL_NAME)
 SCALER_PATH = os.path.join('assets', SCALER_NAME)
 ENCODER_PATH = os.path.join('assets', ENCODER_NAME)
+
+IDWT_RESULTS_PATH = os.path.join('idwt_dir', VARIANT)
+IDWT_PRED_DIR = os.path.join('idwt_dir', 'converted', VARIANT)
